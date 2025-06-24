@@ -1,0 +1,55 @@
+﻿@model IEnumerable<hotel.Models.Room>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ảnh</th>
+            <th>@Html.DisplayNameFor(model => model.NameRoom)</th>
+            <th>Loại phòng</th>
+            <th>@Html.DisplayNameFor(model => model.Status)</th>
+            <th>@Html.DisplayNameFor(model => model.Price1)</th>
+    
+            <th>Mô tả</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.Images != null && item.Images.Count > 0)
+                    {
+                        <img src="@Url.Content(item.Images[0].Path)" alt="Ảnh phòng" width="100" height="70" />
+                    }
+                    else
+                    {
+                        <span>Không có ảnh</span>
+                    }
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.NameRoom)</td>
+                    <td> @(item.TypeRoom != null ? item.TypeRoom.Name + " - " + item.TypeRoom.Kind : "")</td>
+
+                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                <td>@Html.DisplayFor(modelItem => item.Price1)</td>
+               
+                <td>@item.MoTa</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdRoom">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdRoom">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdRoom">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

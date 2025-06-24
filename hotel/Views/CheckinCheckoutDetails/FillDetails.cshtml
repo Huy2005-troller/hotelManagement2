@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Chi tiết checkin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết khách và dịch vụ</h2>
+
+<form method="post" asp-action="SaveDetails">
+    <input type="hidden" name="CheckinId" value="@ViewBag.CheckinId" />
+
+    <h4>Thông tin khách:</h4>
+    @for (int i = 0; i < (int)ViewBag.SoLuongKhach; i++)
+    {
+        <div class="form-group">
+            <label>Tên khách @i:</label>
+            <input type="text" name="TenKhachList[@i]" class="form-control" required />
+
+            <label>CCCD @i:</label>
+            <input type="text" name="CCCDList[@i]" class="form-control" required />
+        </div>
+    }
+
+    <h4>Dịch vụ sử dụng:</h4>
+    @for (int i = 0; i < (int)ViewBag.SoLuongDichVu; i++)
+    {
+        <div class="form-group">
+            <label>Dịch vụ @i:</label>
+            <select name="DichVuIdList[@i]" class="form-control">
+                @foreach (var dv in (SelectList)ViewBag.DichVus)
+                {
+                    <option value="@dv.Value">@dv.Text</option>
+                }
+            </select>
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">Lưu chi tiết</button>
+</form>

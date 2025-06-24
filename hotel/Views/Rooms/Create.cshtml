@@ -1,0 +1,60 @@
+﻿@model hotel.Models.Room
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Room</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="NameRoom" class="control-label"></label>
+                <input asp-for="NameRoom" class="form-control" />
+            </div>
+          
+                <div class="form-group">
+                    <label asp-for="TypeRoomId" class="control-label">Loại phòng</label>
+                    <select asp-for="TypeRoomId" class="form-control" asp-items="ViewBag.TypeRoomId">
+                        <option value="">-- Chọn loại phòng --</option>
+                    </select>
+                    <span asp-validation-for="TypeRoomId" class="text-danger"></span>
+                </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Price1" class="control-label"></label>
+                <input asp-for="Price1" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Price2" class="control-label"></label>
+                <input asp-for="Price2" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Mô tả</label>
+                <textarea name="MoTa" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Upload ảnh</label>
+                <input type="file" name="ImageFiles" multiple class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

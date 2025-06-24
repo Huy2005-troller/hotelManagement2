@@ -1,0 +1,18 @@
+﻿body {
+    background-color: black;
+}
+
+.welcome-banner {
+    background-image: url('/images/HO.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 80px 80px; /* tăng chiều cao từ padding */
+    border-radius: 0px;
+    text-align: center;
+    height: 900px; /* đảm bảo vùng nền kéo dài hơn */
+    display: flow;
+    flex-direction: column;
+    justify-content: center;
+}

@@ -1,0 +1,74 @@
+﻿@model hotel.Models.Room
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+<h4>Room</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" asp-route-id="@Model.IdRoom" method="post" enctype="multipart/form-data">
+            @* QUAN TRỌNG: Validation summary để hiển thị lỗi *@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            @* QUAN TRỌNG: Hidden field cho IdRoom *@
+            <input type="hidden" asp-for="IdRoom" />
+
+            <div class="form-group">
+                <label asp-for="NameRoom" class="control-label"></label>
+                <input asp-for="NameRoom" class="form-control" />
+                <span asp-validation-for="NameRoom" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TypeRoomId" class="control-label">Loại phòng</label>
+                <select asp-for="TypeRoomId" class="form-control" asp-items="ViewBag.TypeRoomId">
+                    <option value="">-- Chọn loại phòng --</option>
+                </select>
+                <span asp-validation-for="TypeRoomId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Price1" class="control-label"></label>
+                <input asp-for="Price1" class="form-control" type="number" step="0.01" />
+                <span asp-validation-for="Price1" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Price2" class="control-label"></label>
+                <input asp-for="Price2" class="form-control" type="number" step="0.01" />
+                <span asp-validation-for="Price2" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Mô tả</label>
+                <textarea asp-for="MoTa" class="form-control"></textarea>
+                <span asp-validation-for="MoTa" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Upload ảnh</label>
+                <input type="file" name="ImageFiles" multiple class="form-control" accept="image/*" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Lưu</button>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
