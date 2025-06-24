@@ -12,7 +12,7 @@ using hotel.Data;
 namespace hotel.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250622081813_InitialCreate")]
+    [Migration("20250624005613_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -404,6 +404,10 @@ namespace hotel.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdRoom"));
 
+                    b.Property<string>("MoTa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("NameRoom")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -436,7 +440,7 @@ namespace hotel.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("Path")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -468,7 +472,7 @@ namespace hotel.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TypeRooms");
+                    b.ToTable("RoomTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

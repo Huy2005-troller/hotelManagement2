@@ -80,7 +80,7 @@ namespace hotel.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TypeRooms",
+                name: "RoomTypes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -90,7 +90,7 @@ namespace hotel.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TypeRooms", x => x.Id);
+                    table.PrimaryKey("PK_RoomTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -206,6 +206,7 @@ namespace hotel.Migrations
                     IdRoom = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NameRoom = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MoTa = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price1 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Price2 = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -215,9 +216,9 @@ namespace hotel.Migrations
                 {
                     table.PrimaryKey("PK_Rooms", x => x.IdRoom);
                     table.ForeignKey(
-                        name: "FK_Rooms_TypeRooms_TypeRoomId",
+                        name: "FK_Rooms_RoomTypes_TypeRoomId",
                         column: x => x.TypeRoomId,
-                        principalTable: "TypeRooms",
+                        principalTable: "RoomTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -275,7 +276,7 @@ namespace hotel.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Path = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RoomId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -462,7 +463,7 @@ namespace hotel.Migrations
                 name: "Rooms");
 
             migrationBuilder.DropTable(
-                name: "TypeRooms");
+                name: "RoomTypes");
         }
     }
 }
